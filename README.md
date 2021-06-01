@@ -1,11 +1,27 @@
-## Node Version Manager (NVM)
-- To find out which version of node your machine is currently running, use the command `node -v` in your terminal
-- We want to build our projects in the latest stable build that is supported by all of our dependencies.
-- For easy node version management, we'll use the [Node Version Manager](https://github.com/nvm-sh/nvm)
+# 3PArbitrage
+
+## Background and Overview
+3PArbitrage is a sports data visualiztion applicaton used to determine NBA team's potential for the upcoming season. Based on statistical analysis of the past season(s), as well as future draft pick implications/ NBA market trends, 3PArbitrage will take a different approach to assessing team's potential success for the ucpoming season. This analysis will be compared to the current Vegas Futures odds for all teams, and will be used to depict arbitrage for sports betters through a nice graphical interface.
   
-### Installation and Config
-We can use homebrew to install the manager:
-1. update homebrew with `brew update`
-2. install the manager with `brew install nvm`
-3. make a directory for the manger in your root folder with `mkdir ~/.nvm`
-4. in your `~/.zshrc` file for zsh users or in your `.bash_profile` for bash users, add the following:
+## Functionality and MVPs
+On 3PArbitrage, users will be able to:
+* Search an nba team they are interested in
+* Toggle the team's graphs used to determine the team's odds for the upcoming season
+* Click on a comparison chart to see opportunities against the most up to date Vegas futures
+
+## Architecture and Technology
+- D3.js library
+- NBA API (still researching which one)
+- Vegas Sports Betting API (still researching which one)
+- Vanilla JS
+- HTML
+- CSS
+
+## Wireframe
+![Screen Shot 2021-06-01 at 5 30 21 AM](https://user-images.githubusercontent.com/76493900/120301052-7fcfa980-c29a-11eb-9d1c-b36e797415b6.png)
+
+## Timeline
+* API research ~ (0.5 days)
+* API implementation ~ (1.5 days)
+* Setting up graphical interface ~ (2 days)
+
