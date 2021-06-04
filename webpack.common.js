@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const outputDir = "./dist";
 
 module.exports = {
-  entry: path.resolve(__dirname, "src", "index.js"), 
+  entry: path.resolve(__dirname, "src", "index.js"),
   output: {
     path: path.join(__dirname, outputDir),
     filename: "[name].js",
@@ -34,6 +34,8 @@ module.exports = {
               // you can specify a publicPath here
               // by default it uses publicPath in webpackOptions.output
               publicPath: "../",
+              //
+              hmr: process.env.NODE_ENV === "development"
             },
           },
           "css-loader",
@@ -56,7 +58,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.s[ca]ss/i,
+        test: /\.scss/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -67,17 +69,23 @@ module.exports = {
             },
           },
           "css-loader",
-          {
-            loader: "sass-loader", 
-            options: {
-              implementation: require('sass')
-            }
-          },
+          "sass-loader",
           "postcss-loader",
         ],
       },
+      {
+        test: /\.csv$/,
+        loader: 'csv-loader',
+        options: {
+          dynamicTyping: true,
+          header: true,
+          skipEmptyLines: true
+        }
+      },
     ],
   },
+
+
   plugins: [
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
