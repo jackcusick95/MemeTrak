@@ -1,15 +1,172 @@
-// import axios from "axios"; 
-
-// export const maxChart = async (arg) => {
-//     const response = await axios.get("https://api.twelvedata.com/time_series", {
-//         params: {
-//             symbol: ["BB", "AMC", "GME", "NOK", "BBBY"],
-//             interval: "1week",
-//             outputsize: "3000",
-//             apikey: MYAPIKEY,
-//             source: "docs",
-//         },
-//     });
+import axios from "axios"; 
+import { myAPIKey } from '../../keys.js';
+import "core-js";
+import "regenerator-runtime";
 
 
-// }
+export const selectMaxChart = async () => {
+
+    const response = await axios.get("https://api.twelvedata.com/time_series", {
+        params: {
+            symbol: "BB, AMC, GME, NOK, BBBY",
+            interval: "1month",
+            outputsize: "1000",
+            apikey: myAPIKey,
+            source: "docs",
+        },
+    });
+
+    // debugger 
+    if (response.data.status === "error") {
+        console.log("Check console to see API call error.")
+        return [];
+    }
+    // if (window.maxChart.id !== "maxChart") maxChart.destroy();
+
+    document.querySelector(".max-chart").innerHTML = chartTemplate(
+        response.data
+    );
+}
+
+const chartTemplate = (chartInfo) => {
+    let intervalWeekly = [];
+    let bbopen = [];
+    let AMCopen = []; 
+    let GMEopen = []; 
+    let NOKopen = []; 
+    let BBBYopen = []; 
+
+    Object.values(chartInfo.BB.values).map((datapoint) => {
+        bbopen.unshift(datapoint.open);
+        intervalWeekly.unshift(datapoint.datetime);
+    });
+
+    Object.values(chartInfo.AMC.values).map((datapoint) => {
+        AMCopen.unshift(datapoint.open);
+    });
+
+    Object.values(chartInfo.GME.values).map((datapoint) => {
+        GMEopen.unshift(datapoint.open);
+    });
+
+    Object.values(chartInfo.NOK.values).map((datapoint) => {
+        NOKopen.unshift(datapoint.open);
+    });
+
+    Object.values(chartInfo.BBBY.values).map((datapoint) => {
+        BBBYopen.unshift(datapoint.open);
+    });
+
+    let bbpercentChange = (
+        ((bbopen[bbopen.length - 1] - bbopen[0]) / bbopen[0]) *
+        100
+    ).toFixed(2);
+    bbpercentChange = bbpercentChange > 0 ? "+" + bbpercentChange : bbpercentChange;
+
+    let color =
+        bbopen[bbopen.length - 1] - bbopen[0] > 0
+            ? "rgb(54, 236, 189)"
+            : "rgb(255, 0, 0)";
+
+    let ctx = document.getElementById("maxChart").getContext("2d");
+
+    window.maxChart = new Chart(ctx, {
+        responsive: true,
+        maintainAspectRatio: false,
+        type: "line",
+        data: {
+            labels: intervalWeekly,
+            datasets: [
+                {
+                    label: "",
+                    data: bbopen,
+                    borderColor: "rgb(255, 0, 0)",
+                    borderWidth: 2,
+                    pointHitRadius: 100,
+                },
+                {
+                    label: "",
+                    data: AMCopen,
+                    borderColor: "rgb(54, 236, 189)",
+                    borderWidth: 2,
+                    pointHitRadius: 100,
+                },
+                // {
+                //     label: "",
+                //     data: GMEopen,
+                //     borderColor: "rgb(0, 0, 255)",
+                //     borderWidth: 2,
+                //     pointHitRadius: 100,
+                // },
+                {
+                    label: "",
+                    data: NOKopen,
+                    borderColor: "rgb(106, 90, 205)",
+                    borderWidth: 2,
+                    pointHitRadius: 100,
+                },
+                {
+                    label: "",
+                    data: BBBYopen,
+                    borderColor: "rgb(255, 165, 0)",
+                    borderWidth: 2,
+                    pointHitRadius: 100,
+                },
+            ],
+        },
+        options: {
+            elements: {
+                line: {
+                    borderCapStyle: "round",
+                    tension: 0.2,
+                },
+                point: {
+                    radius: 0,
+                },
+            },
+            maintainAspectRatio: false,
+            scales: {
+                grid: {
+                    color: "rgba(0,0,0,0)",
+                    borderColor: "rgba(0,0,0,0)",
+                    display: false,
+                },
+                y: {
+                    beginAtZero: true,
+                },
+
+                x: {
+                    grid: {
+                        color: "rgba(0,0,0,0)",
+                        borderColor: "rgba(0,0,0,0)",
+                        tickColor: "rgba(0,0,0,0)",
+                    },
+                    display: true,
+                    ticks: {
+                        display: true,
+                    },
+                },
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: `Max: "BB" (${bbpercentChange}%)`,
+                    color: color,
+                    font: {
+                        family:
+                            "Cambria, 'Cochin', 'Georgia', 'Times', 'Times New Roman', serif",
+                        size: 18,
+                    },
+                },
+                legend: {
+                    labels: {
+                        boxWidth: 0,
+                    },
+                },
+            },
+        },
+    });
+};
+
+
+
