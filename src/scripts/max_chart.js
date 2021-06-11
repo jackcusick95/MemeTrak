@@ -63,10 +63,34 @@ const chartTemplate = (chartInfo) => {
     ).toFixed(2);
     bbpercentChange = bbpercentChange > 0 ? "+" + bbpercentChange : bbpercentChange;
 
+    let AMCpercentChange = (
+        ((AMCopen[AMCopen.length - 1] - AMCopen[0]) / AMCopen[0]) *
+        100
+    ).toFixed(2);
+    AMCpercentChange = AMCpercentChange > 0 ? "+" + AMCpercentChange : AMCpercentChange;
+
+    let GMEpercentChange = (
+        ((GMEopen[GMEopen.length - 1] - GMEopen[0]) / GMEopen[0]) *
+        100
+    ).toFixed(2);
+    GMEpercentChange = GMEpercentChange > 0 ? "+" + GMEpercentChange : GMEpercentChange;
+
+    let NOKpercentChange = (
+        ((NOKopen[NOKopen.length - 1] - NOKopen[0]) / NOKopen[0]) *
+        100
+    ).toFixed(2);
+    NOKpercentChange = NOKpercentChange > 0 ? "+" + NOKpercentChange : NOKpercentChange;
+
+    let BBBYpercentChange = (
+        ((BBBYopen[BBBYopen.length - 1] - BBBYopen[0]) / BBBYopen[0]) *
+        100
+    ).toFixed(2);
+    BBBYpercentChange = BBBYpercentChange > 0 ? "+" + BBBYpercentChange : BBBYpercentChange;
+
     let color =
         bbopen[bbopen.length - 1] - bbopen[0] > 0
-            ? "rgb(54, 236, 189)"
-            : "rgb(255, 0, 0)";
+            ? "rgba(0,0,0)"
+            : "rgba(0,0,0)";
 
     let ctx = document.getElementById("maxChart").getContext("2d");
 
@@ -150,8 +174,8 @@ const chartTemplate = (chartInfo) => {
             plugins: {
                 title: {
                     display: true,
-                    text: `Max: "BB" (${bbpercentChange}%)`,
-                    color: color,
+                    text: [`Max: "BB" (${bbpercentChange}%), Max: "AMC" (${AMCpercentChange}%), Max: "GME" (${GMEpercentChange}%), Max: "NOK" (${NOKpercentChange}%), Max: "BBBY" (${BBBYpercentChange}%)`],
+                    color: color, 
                     font: {
                         family:
                             "Cambria, 'Cochin', 'Georgia', 'Times', 'Times New Roman', serif",
