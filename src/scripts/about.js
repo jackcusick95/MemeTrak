@@ -17,7 +17,7 @@ export function closeModal() {
     modal.style.display = 'none';
     document.querySelector("body").style.overflow = 'visible';
     document.querySelector("body").style.background = 'white';
-    mainContentContainer.style.visibility = 'visible'
+    mainContentContainer.style.visibility = 'visible';
     // document.querySelector('footer').style.visibility = 'visible'
 }
 
