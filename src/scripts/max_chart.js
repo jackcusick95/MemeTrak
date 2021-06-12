@@ -2,6 +2,7 @@ import axios from "axios";
 import { myAPIKey } from '../../keys.js';
 import "core-js";
 import "regenerator-runtime";
+import "../styles/about.scss";
 
 
 export const selectMaxChart = async () => {
@@ -16,16 +17,34 @@ export const selectMaxChart = async () => {
         },
     });
 
-    debugger 
+    // debugger 
     if (response.data.status === "error") {
         console.log("Check console to see API call error.")
         return [];
     }
     // if (window.maxChart.id !== "maxChart") maxChart.destroy();
 
-    document.querySelector(".max-chart").innerHTML = chartTemplate(
-        response.data
-    );
+    document.querySelector(".max-chart").innerHTML = chartTemplate(response.data);
+    const maxchart = document.querySelector(".max-chart")
+    const chartcontainer = document.querySelector(".chart-container")
+    chartcontainer.style.display='none';
+    maxchart.style.display = 'none'; 
+}
+
+export function openMaxChart() {
+    const maxchart = document.querySelector(".max-chart")
+    const maxchartbutton = document.querySelector(".maxchartbutton")
+    const mainContentContainer = document.querySelector('.main-content-container')
+    const chartcontainer = document.querySelector(".chart-container")
+    const landingpage= document.querySelector(".landing-page")
+
+    mainContentContainer.onclick = (e) => {
+        if (e.target === maxchartbutton) {
+            chartcontainer.style.display ='block'; 
+            maxchart.style.display = 'block';
+            landingpage.style.display = "none"; 
+        }
+    }
 }
 
 const chartTemplate = (chartInfo) => {

@@ -7,4 +7,5 @@ document.addEventListener('DOMContentLoaded', () => {
     aboutFile.addEventListeners();
     aboutFile.openModal();
     selectMaxChart.selectMaxChart(); 
+    selectMaxChart.openMaxChart();
 })
