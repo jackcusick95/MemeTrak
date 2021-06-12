@@ -10,13 +10,13 @@ export const selectMaxChart = async () => {
         params: {
             symbol: "BB, AMC, GME, NOK, BBBY",
             interval: "1month",
-            outputsize: "1000",
+            outputsize: "130",
             apikey: myAPIKey,
             source: "docs",
         },
     });
 
-    // debugger 
+    debugger 
     if (response.data.status === "error") {
         console.log("Check console to see API call error.")
         return [];
