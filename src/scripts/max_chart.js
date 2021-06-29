@@ -17,7 +17,6 @@ export const selectMaxChart = async () => {
         },
     });
 
-    // debugger 
     if (response.data.status === "error") {
         console.log("Check console to see API call error.")
         return [];

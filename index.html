@@ -18,7 +18,7 @@
     </div>
       <div class="nav-bar-container">
         <div class="left-navbar">
-          <h1 class="navbar-logo">3PArbitrage</h1>
+          <h1 class="navbar-logo">MemeTrak</h1>
         </div>
         <div class="center-navbar">
           <div class='team-search-input'>
@@ -34,7 +34,10 @@
       <div class="main-content-container">
         <div class="landing-page">
           <div class="landing-buttons">
-            <h1 class = "maxchartbutton">All Meme Stocks</h1>
+              <h1 class = "maxchartbutton">MEME POOL</h1>
+              <h1 class="blackberrybutton">Blackberry</h1>
+              <h1 class="amcbutton">AMC</h1>
+              <h1 class="nokbutton">NOK</h1>
           </div>
         </div>
         <div class=chart-container>
@@ -43,6 +46,21 @@
           class="max-chart"
           style="width: 100%; height: 100%"
           ></canvas>
+          <canvas 
+          id="bbChart" 
+          class="bb-chart" 
+          style="width: 100%; height: 100%">
+        </canvas>
+          <canvas 
+          id="amcChart" 
+          class="amc-chart" 
+          style="width: 100%; height: 100%">
+          </canvas>
+          <canvas 
+          id="nokChart" 
+          class="nok-chart" 
+          style="width: 100%; height: 100%">
+          </canvas>
         </div>
       </div>
 
@@ -55,20 +73,23 @@
           </div>
 
           <div class='modal-body'>
-            <p> Hello and welcome to 3PArbitrage, your one-stop-shop to track the world's hottest meme stocks.</p></br>
+            <p> Hello and welcome to MemeTrak, your one-stop-shop to track the world's hottest meme stocks.</p></br>
           
-            <p>As meme stocks and the power of retail investing have taken Wall Street by storm, 3PArbitrage has selected 5 of the most popular meme stocks for you to track.</p></br>
+            <p>As meme stocks and the power of retail investing have taken Wall Street by storm, MemeTrak has selected 5 of the most popular meme stocks for you to track.</p></br>
           
-            <span><p> Currently being tracked: </p></span> <span><p>BB, AMC, GME, NOK, BBBY</p></span></br>
+            <div id="modal-track-container">
+              <p id="modal-tracked"> Currently being tracked  <p id="modal-ticker">:   BB, AMC, GME, NOK, BBBY</p></p> 
+              <!-- <p id="modal-ticker">BB, AMC, GME, NOK, BBBY</p> -->
+            </div></br>
 
-            <p> How does 3PArbitrage Work?</p>
+            <p id="modal-how"> How does MemeTrak Work?</p>
             <p> Once you close out of this page, you can select one of the five meme stocks to see their performance. You can also select "meme pool" to see all 5 stocks on the same chart.</p></br>
 
               <p> Once on your favorite meme stock's chart, feel free to select the tab with your desired length of data output.</p></br>
             
-            <p> ENJOY!</p></br>
+            <p> ENJOY!</p>
             
-          </br>
+          
       
         </div>
     <!-- <script src="./src/scripts/about.js"></script> -->
