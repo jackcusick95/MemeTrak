@@ -123,7 +123,7 @@ html, body {
   background-repeat: no-repeat;
 
 background-size: 100% 100%;
-   display: fixed;
+display: flex;
 }
 
 .landing-buttons {
@@ -138,14 +138,49 @@ background-size: 100% 100%;
     margin-left: 40%;
     height: 50px;
     width: 120px;
+            border-radius: 50%;
+    background-color: white;
+    padding: 20px;
+    border: 5px solid white; 
+}
+
+.maxchartbutton:hover {
+    cursor: pointer;
+    border: 5px solid green; 
+    background-color: lightgreen;
+}
+
+.maxchart-text {
+    align-items: center;
+    height: 40px;
+    width: 120px;
+    margin-top: 20px;
+    margin-left: 13px;
 }
 
 .blackberrybutton {
     position: absolute; 
     margin-top: 20%;
     margin-left: 70%;
-        height: 50px;
+    height: 60px;
     width: 120px;
+    border-radius: 50%;
+    background-color: white;
+    padding: 20px;
+    border: 5px solid white; 
+}
+
+.blackberrybutton:hover {
+    cursor: pointer;
+    border: 5px solid green; 
+    background-color: lightgreen;
+}
+
+.bb-logo {
+    align-items: center;
+    height: 40px;
+    width: 120px;
+    margin-top: 10px;
 }
 
 .amcbutton {
@@ -154,13 +189,23 @@ background-size: 100% 100%;
     margin-left: 60%;
         height: 50px;
     width: 120px;
+        border-radius: 50%;
+    background-color: white;
+    padding: 20px;
+    border: 5px solid white; 
 }
-.gmebutton {
-    position: absolute; 
-    margin-top: 10%;
-    margin-left: 40%;
-        height: 50px;
+
+.amcbutton:hover {
+    cursor: pointer;
+    border: 5px solid green; 
+    background-color: lightgreen;
+}
+
+.amc-logo {
+    align-items: center;
+    height: 40px;
     width: 120px;
+    margin-top: 5px;
 }
 
 .nokbutton {
@@ -169,7 +214,51 @@ background-size: 100% 100%;
     margin-left: 20%;
         height: 50px;
     width: 120px;
+        border-radius: 50%;
+    background-color: white;
+    padding: 20px;
+    border: 5px solid white; 
 }
+
+.nokbutton:hover {
+    cursor: pointer;
+    border: 5px solid green; 
+    background-color: lightgreen;  
+}
+
+.nok-logo {
+    align-items: center;
+    height: 150px;
+    width: 150px;
+    margin-top: -50px;
+    margin-left: -15px;
+}
+
+.gmebutton {
+    position: absolute; 
+    margin-top: 10%;
+    margin-left: 40%;
+        height: 50px;
+    width: 120px;
+        border-radius: 50%;
+    background-color: white;
+    padding: 20px;
+    border: 5px solid white; 
+}
+
+.gmebutton:hover {
+    cursor: pointer;
+    border: 5px solid green; 
+    background-color: lightgreen;  
+}
+
+.gme-logo {
+    align-items: center;
+    height: 40px;
+    width: 120px;
+    margin-top: 5px;    
+}
+
 
 
 .bbbybutton {
@@ -178,4 +267,21 @@ background-size: 100% 100%;
     margin-left: 10%;
         height: 50px;
     width: 120px;
+        border-radius: 50%;
+    background-color: white;
+    padding: 20px;
+    border: 5px solid white;
+}
+
+.bbbybutton:hover {
+    cursor: pointer;
+    border: 5px solid green; 
+    background-color: lightgreen;  
+}
+
+.bbby-logo {
+    align-items: center;
+    height: 130px;
+    width: 130px;  
+    margin-top: -40px;  
 }

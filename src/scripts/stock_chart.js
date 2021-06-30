@@ -5,8 +5,9 @@ import "regenerator-runtime";
 import "../styles/about.scss";
 
 
-export const loadStockChart = async (arg) => {
-    let memeTicker = arg;
+export const openStockChart = async (ticker, button) => {
+    let memeTicker = ticker;
+    let memeButton = button;
     const response = await axios.get("https://api.twelvedata.com/time_series", {
         params: {
             symbol: memeTicker,
@@ -23,30 +24,33 @@ export const loadStockChart = async (arg) => {
     }
     if (window.stockChart.id !== "stockChart") stockChart.destroy();
 
-    document.querySelector(".stock-chart").innerHTML = chartTemplate(response.data);
+    document.querySelector(".stock-chart").innerHTML = chartTemplate(response.data, ticker);
     const stockchart = document.querySelector(".stock-chart")
-    const chartcontainer = document.querySelector(".chart-container")
-    chartcontainer.style.display = 'none';
-    stockchart.style.display = 'none';
-}
-
-export function openStockChart(button) {
-    const stockchart = document.querySelector(".stock-chart")
-    const stockbutton = document.querySelector(button)
+    const stockbutton = document.querySelector(memeButton)
     const mainContentContainer = document.querySelector('.main-content-container')
     const chartcontainer = document.querySelector(".chart-container")
     const landingpage = document.querySelector(".landing-page")
+    const landingbuttons = document.querySelector(".landing-buttons")
 
-    mainContentContainer.onclick = (e) => {
+    // chartcontainer.style.display = 'none';
+    // stockchart.style.display = 'none';
+    
+    stockbutton.onclick = (e) => {
         if (e.target === stockbutton) {
+            landingpage.style.display = "none";
+            landingbuttons.style.display = "none";
             chartcontainer.style.display = 'block';
             stockchart.style.display = 'block';
-            landingpage.style.display = "none";
+            // mainContentContainer.style.display = 'block'; 
         }
     }
+    // const stockchart = document.querySelector(".stock-chart")
+    // const chartcontainer = document.querySelector(".chart-container")
+    // chartcontainer.style.display = 'none';
+    // stockchart.style.display = 'none';
 }
 
-const chartTemplate = (chartInfo) => {
+const chartTemplate = (chartInfo, ticker) => {
     let intervalWeekly = [];
     let stockopen = [];
 
@@ -122,7 +126,7 @@ const chartTemplate = (chartInfo) => {
             plugins: {
                 title: {
                     display: true,
-                    text: [`Max: "BB" (${stockpercentchange}%)`],
+                    text: [`Max: ${ticker} (${stockpercentchange}%)`],
                     color: color,
                     font: {
                         family:
