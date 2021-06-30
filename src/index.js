@@ -20,48 +20,65 @@ export const hideChart = () => {
 };
 
 
-// let maxChart = document.getElementById("max-chart");
-// selectMaxChart.selectMaxChart();
-// maxChart.onclick = () => {
-//     selectMaxChart.openMaxChart();
-// };
+
+const chartcontainer = document.querySelector(".chart-container")
+const maxcontainer = document.querySelector(".max-chart")
+const stockcontainer = document.querySelector(".stock-chart")
+// const mainContentContainer = document.querySelector('.main-content-container')
+// const landingpage = document.querySelector(".landing-page")
+// const landingbuttons = document.querySelector(".landing-buttons")
+
+chartcontainer.style.display = "none";
+maxcontainer.style.display = "none";
+stockcontainer.style.display = "none";
+
+let maxChart = document.getElementById("max-chart-button");
+let stocks = "BB, AMC, GME, NOK, BBBY"
+maxChart.onclick = () => {
+    selectMaxChart.openMaxChart(stocks);
+};
+
 
 let bbChart = document.getElementById("bb-chart-button");
 let bb = "BB"
-let bbbutton = ".blackberrybutton"
 bbChart.onclick = () => {
-    selectChart.openStockChart(bb, bbbutton);
+    selectChart.openStockChart(bb);
 };
 
 let amcChart = document.getElementById("amc-chart-button");
 let amc = "AMC"
-let amcbutton = ".amcbutton"
 amcChart.onclick = () => {
-    selectChart.openStockChart(amc, amcbutton);
+    selectChart.openStockChart(amc);
 };
 
 let nokChart = document.getElementById("nok-chart-button");
 let nok = "NOK"
-let nokbutton = ".nokbutton"
 nokChart.onclick = () => {
-    selectChart.openStockChart(nok, nokbutton);
+    selectChart.openStockChart(nok);
 };
 
 let gmeChart = document.getElementById("gme-chart-button");
 let gme = "GME"
-let gmebutton = ".gmebutton"
 gmeChart.onclick = () => {
-    selectChart.openStockChart(gme, gmebutton);
+    selectChart.openStockChart(gme);
 };
 
 let bbbyChart = document.getElementById("bbby-chart-button");
 let bbby = "BBBY"
-let bbbybutton = ".bbbybutton"
 bbbyChart.onclick = () => {
-    selectChart.openStockChart(bbby, bbbybutton);
+    selectChart.openStockChart(bbby);
 };
+
+window.onload = function () {
+    var reloading = sessionStorage.getItem("reloading");
+    if (reloading) {
+        sessionStorage.removeItem("reloading");
+        aboutFile.closeModal();
+    }
+}
 
 document.querySelector(".navbar-logo").addEventListener("click", () => { 
     hideChart(); 
+    sessionStorage.setItem("reloading", "true");
     window.location.reload();
 });

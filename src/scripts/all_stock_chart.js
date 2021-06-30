@@ -5,11 +5,11 @@ import "regenerator-runtime";
 import "../styles/about.scss";
 
 
-export const selectMaxChart = async () => {
-
+export const openMaxChart = async (ticker) => {
+    let memeTicker = ticker;
     const response = await axios.get("https://api.twelvedata.com/time_series", {
         params: {
-            symbol: "BB, AMC, GME, NOK, BBBY",
+            symbol: memeTicker,
             interval: "1month",
             outputsize: "130",
             apikey: myAPIKey,
@@ -24,27 +24,38 @@ export const selectMaxChart = async () => {
     if (window.maxChart.id !== "maxChart") maxChart.destroy();
 
     document.querySelector(".max-chart").innerHTML = chartTemplate(response.data);
-    const maxchart = document.querySelector(".max-chart")
+
+    const landingpage = document.querySelector(".landing-page")
+    const landingbuttons = document.querySelector(".landing-buttons")
+    landingpage.style.display = "none";
+    landingbuttons.style.display = "none";
+
+    const maxcontainer = document.querySelector(".max-chart")
     const chartcontainer = document.querySelector(".chart-container")
-    chartcontainer.style.display='none';
-    maxchart.style.display = 'none'; 
+    chartcontainer.style.display = "block";
+    maxcontainer.style.display = "block";
+
+    // const maxchart = document.querySelector(".max-chart")
+    // const chartcontainer = document.querySelector(".chart-container")
+    // chartcontainer.style.display='none';
+    // maxchart.style.display = 'none'; 
 }
 
-export function openMaxChart() {
-    const maxchart = document.querySelector(".max-chart")
-    const maxchartbutton = document.querySelector(".maxchartbutton")
-    const mainContentContainer = document.querySelector('.main-content-container')
-    const chartcontainer = document.querySelector(".chart-container")
-    const landingpage= document.querySelector(".landing-page")
+// export function openMaxChart() {
+//     const maxchart = document.querySelector(".max-chart")
+//     const maxchartbutton = document.querySelector(".maxchartbutton")
+//     const mainContentContainer = document.querySelector('.main-content-container')
+//     const chartcontainer = document.querySelector(".chart-container")
+//     const landingpage= document.querySelector(".landing-page")
 
-    mainContentContainer.onclick = (e) => {
-        if (e.target === maxchartbutton) {
-            chartcontainer.style.display ='block'; 
-            maxchart.style.display = 'block';
-            landingpage.style.display = "none"; 
-        }
-    }
-}
+//     mainContentContainer.onclick = (e) => {
+//         if (e.target === maxchartbutton) {
+//             chartcontainer.style.display ='block'; 
+//             maxchart.style.display = 'block';
+//             landingpage.style.display = "none"; 
+//         }
+//     }
+// }
 
 const chartTemplate = (chartInfo) => {
     let intervalWeekly = [];
