@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="./dist/main.js"></script>
+    <!-- <script src="./dist/main.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="./dist/main.css" />
     <link rel="stylesheet" href="./dist/reset.css" />
-    <title>3PArbitrage</title>
+    <title>MemeTrak</title>
   </head>
 
   <body>
@@ -34,33 +34,28 @@
       <div class="main-content-container">
         <div class="landing-page">
           <div class="landing-buttons">
-              <h1 class = "maxchartbutton">MEME POOL</h1>
-              <h1 class="blackberrybutton">Blackberry</h1>
-              <h1 class="amcbutton">AMC</h1>
-              <h1 class="nokbutton">NOK</h1>
+            <!-- <h1 id="bb-chart" class="blackberrybutton">Blackberry</h1> -->
+            <!-- <h1 id="amc-chart" class="amcbutton">AMC</h1> -->
+            <!-- <h1 id="nok-chart" class="nokbutton">NOK</h1> -->
+            <h1 id="max-chart" class = "maxchartbutton">MEME POOL</h1>
+            <img id="bb-chart-button" class="blackberrybutton" src="public/images/blackberry.png">
+            <img id="amc-chart-button" class="amcbutton" src="public/images/amc.png">
+            <img id="nok-chart-button" class="nokbutton" src="public/images/nokia.png">
+            <img id="gme-chart-button" class="gmebutton" src="public/images/gamestop.png">
+            <img id="bbby-chart-button" class="bbbybutton" src="public/images/bbby.png">
           </div>
         </div>
         <div class=chart-container>
-          <canvas
+          <!-- <canvas
           id="maxChart"
-          class="max-chart"
+          class="max-chart full-chart"
           style="width: 100%; height: 100%"
-          ></canvas>
+          ></canvas> -->
           <canvas 
-          id="bbChart" 
-          class="bb-chart" 
+          id="stockChart" 
+          class="stock-chart full-chart" 
           style="width: 100%; height: 100%">
         </canvas>
-          <canvas 
-          id="amcChart" 
-          class="amc-chart" 
-          style="width: 100%; height: 100%">
-          </canvas>
-          <canvas 
-          id="nokChart" 
-          class="nok-chart" 
-          style="width: 100%; height: 100%">
-          </canvas>
         </div>
       </div>
 
@@ -95,4 +90,5 @@
     <!-- <script src="./src/scripts/about.js"></script> -->
       <!-- </div> -->
   </body>
+  <script src="./dist/main.js"></script>
 </html>
