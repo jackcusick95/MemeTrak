@@ -5,8 +5,8 @@ import "regenerator-runtime";
 import "../styles/about.scss";
 
 
-export const loadStockChart = async (arg) => {
-    let memeTicker = arg;
+export const openStockChart = async (ticker) => {
+    let memeTicker = ticker;
     const response = await axios.get("https://api.twelvedata.com/time_series", {
         params: {
             symbol: memeTicker,
@@ -23,30 +23,22 @@ export const loadStockChart = async (arg) => {
     }
     if (window.stockChart.id !== "stockChart") stockChart.destroy();
 
-    document.querySelector(".stock-chart").innerHTML = chartTemplate(response.data);
-    const stockchart = document.querySelector(".stock-chart")
-    const chartcontainer = document.querySelector(".chart-container")
-    chartcontainer.style.display = 'none';
-    stockchart.style.display = 'none';
-}
+    document.querySelector(".stock-chart").innerHTML = chartTemplate(response.data, ticker);
 
-export function openStockChart(button) {
-    const stockchart = document.querySelector(".stock-chart")
-    const stockbutton = document.querySelector(button)
-    const mainContentContainer = document.querySelector('.main-content-container')
-    const chartcontainer = document.querySelector(".chart-container")
     const landingpage = document.querySelector(".landing-page")
+    const landingbuttons = document.querySelector(".landing-buttons")
+    landingpage.style.display = "none";
+    landingbuttons.style.display = "none";
 
-    mainContentContainer.onclick = (e) => {
-        if (e.target === stockbutton) {
-            chartcontainer.style.display = 'block';
-            stockchart.style.display = 'block';
-            landingpage.style.display = "none";
-        }
-    }
+    const stockcontainer = document.querySelector(".stock-chart")
+    const chartcontainer = document.querySelector(".chart-container")
+    chartcontainer.style.display = "block";
+    stockcontainer.style.display = "block";
+  
+
 }
 
-const chartTemplate = (chartInfo) => {
+const chartTemplate = (chartInfo, ticker) => {
     let intervalWeekly = [];
     let stockopen = [];
 
@@ -122,7 +114,7 @@ const chartTemplate = (chartInfo) => {
             plugins: {
                 title: {
                     display: true,
-                    text: [`Max: "BB" (${stockpercentchange}%)`],
+                    text: [`Max: ${ticker} (${stockpercentchange}%)`],
                     color: color,
                     font: {
                         family:

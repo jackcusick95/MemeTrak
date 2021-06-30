@@ -1,6 +1,6 @@
 import * as aboutFile from './scripts/about.js';
-import * as selectMaxChart from './scripts/max_chart.js';
-import * as selectChart from './scripts/bb_chart.js';
+import * as selectMaxChart from './scripts/all_stock_chart.js';
+import * as selectChart from './scripts/stock_chart.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,9 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     aboutFile.openModal();
 
 })
-
-
-// selectMaxChart.selectMaxChart();
 
 let allCharts = document.querySelectorAll(".chart-container .full-chart");
 
@@ -23,66 +20,65 @@ export const hideChart = () => {
 };
 
 
-// let maxChart = document.getElementById("max-chart");
-// maxChart.onclick = () => {
-//     selectMaxChart.openMaxChart();
-// };
+
+const chartcontainer = document.querySelector(".chart-container")
+const maxcontainer = document.querySelector(".max-chart")
+const stockcontainer = document.querySelector(".stock-chart")
+// const mainContentContainer = document.querySelector('.main-content-container')
+// const landingpage = document.querySelector(".landing-page")
+// const landingbuttons = document.querySelector(".landing-buttons")
+
+chartcontainer.style.display = "none";
+maxcontainer.style.display = "none";
+stockcontainer.style.display = "none";
+
+let maxChart = document.getElementById("max-chart-button");
+let stocks = "BB, AMC, GME, NOK, BBBY"
+maxChart.onclick = () => {
+    selectMaxChart.openMaxChart(stocks);
+};
+
 
 let bbChart = document.getElementById("bb-chart-button");
 let bb = "BB"
-let bbbutton = ".blackberrybutton"
-selectChart.loadStockChart(bb);
 bbChart.onclick = () => {
-    selectChart.openStockChart(bbbutton);
+    selectChart.openStockChart(bb);
 };
 
 let amcChart = document.getElementById("amc-chart-button");
 let amc = "AMC"
-let amcbutton = ".amcbutton"
-selectChart.loadStockChart(amc);
 amcChart.onclick = () => {
-    selectChart.openStockChart(amcbutton);
+    selectChart.openStockChart(amc);
 };
 
 let nokChart = document.getElementById("nok-chart-button");
 let nok = "NOK"
-let nokbutton = ".nokbutton"
-selectChart.loadStockChart(nok);
 nokChart.onclick = () => {
-    selectChart.openStockChart(nokbutton);
+    selectChart.openStockChart(nok);
 };
 
 let gmeChart = document.getElementById("gme-chart-button");
 let gme = "GME"
-let gmebutton = ".gmebutton"
-selectChart.loadStockChart(gme);
 gmeChart.onclick = () => {
-    selectChart.openStockChart(gmebutton);
+    selectChart.openStockChart(gme);
 };
 
 let bbbyChart = document.getElementById("bbby-chart-button");
 let bbby = "BBBY"
-let bbbybutton = ".bbbybutton"
-selectChart.loadStockChart(bbby);
 bbbyChart.onclick = () => {
-    selectChart.openStockChart(bbbybutton);
+    selectChart.openStockChart(bbby);
 };
 
-
-// let amcChart = document.getElementById("bb-chart");
-// let amc = "AMC"
-// let button = ".amcbutton"
-// selectBBChart.selectBBChart(amc);
-// amcChart.onclick = () => {
-//     selectBBChart.openBBChart();
-// };
-
-// let nokChart = document.getElementById("nok-chart");
-// nokChart.onclick = () => {
-//     selectNOKChart.selectNOKChart();
-// };
+window.onload = function () {
+    var reloading = sessionStorage.getItem("reloading");
+    if (reloading) {
+        sessionStorage.removeItem("reloading");
+        aboutFile.closeModal();
+    }
+}
 
 document.querySelector(".navbar-logo").addEventListener("click", () => { 
     hideChart(); 
+    sessionStorage.setItem("reloading", "true");
     window.location.reload();
 });
