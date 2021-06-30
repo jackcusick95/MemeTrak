@@ -25,3 +25,4 @@ On 3PArbitrage, users will be able to:
 * API implementation ~ (1.5 days)
 * Setting up graphical interface ~ (2 days)
 
+

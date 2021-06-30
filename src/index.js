@@ -1,104 +1,84 @@
-import "./styles/index.scss";
-import "./images/yoda-stitch.jpg";
-import canvasExample from "./scripts/canvas";
-import Square from "./scripts/square";
-import { DOMExample } from "./scripts/DOMExample";
-const currentStateObj = {
-  currentExample: null,
-  currentEventListeners: [],
+import * as aboutFile from './scripts/about.js';
+import * as selectMaxChart from './scripts/all_stock_chart.js';
+import * as selectChart from './scripts/stock_chart.js';
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    aboutFile.addEventListeners();
+    aboutFile.openModal();
+
+})
+
+let allCharts = document.querySelectorAll(".chart-container .full-chart");
+
+export const hideChart = () => {
+    const chartcontainer = document.querySelector(".chart-container")
+    allCharts.forEach((chart) => {
+        chartcontainer.style.display = 'none';
+        chart.style.display = "none";
+    });
 };
 
-document.querySelector("#canvas-demo").addEventListener("click", startCanvas);
-document.querySelector("#DOM-demo").addEventListener("click", startDOM);
 
-function startDOM() {
-  unregisterEventListeners();
-  clearDemo();
-  currentStateObj.currentExample = "DOMDEMO";
-  DOMExample();
-}
 
-function startCanvas() {
-  clearDemo();
-  unregisterEventListeners();
-  currentStateObj.currentExample = "CANVASDEMO";
-  const canvas = new canvasExample();
-  canvas.createCanvas();
-  const squares = [new Square(canvas.ctx, canvas.coords, canvas.fillColor)];
+const chartcontainer = document.querySelector(".chart-container")
+const maxcontainer = document.querySelector(".max-chart")
+const stockcontainer = document.querySelector(".stock-chart")
+// const mainContentContainer = document.querySelector('.main-content-container')
+// const landingpage = document.querySelector(".landing-page")
+// const landingbuttons = document.querySelector(".landing-buttons")
 
-  let animating = true;
+chartcontainer.style.display = "none";
+maxcontainer.style.display = "none";
+stockcontainer.style.display = "none";
 
-  const animation = () => {
-    canvas.clearCanvas();
-    if (animating) squares.forEach((sq) => sq.updateSquare(canvas.fillColor));
-    squares.forEach((sq) => sq.drawSquare());
-    window.requestAnimationFrame(animation);
-    squares.forEach((sq) => {
-      if (sq.coords[0] + sq.coords[2] > window.innerWidth)
-        sq.reverseAnimation();
-      if (sq.coords[0] < 0) sq.reverseAnimation();
-    });
-  };
+let maxChart = document.getElementById("max-chart-button");
+let stocks = "BB, AMC, GME, NOK, BBBY"
+maxChart.onclick = () => {
+    selectMaxChart.openMaxChart(stocks);
+};
 
-  window.requestAnimationFrame(animation);
 
-  window.addEventListener("keydown", handleKeyDown);
-  currentStateObj.currentEventListeners.push([
-    "window",
-    "keydown",
-    handleKeyDown,
-  ]);
+let bbChart = document.getElementById("bb-chart-button");
+let bb = "BB"
+bbChart.onclick = () => {
+    selectChart.openStockChart(bb);
+};
 
-  window.addEventListener("mousedown", handleMouseDown);
-  currentStateObj.currentEventListeners.push([
-    "window",
-    "mousedown",
-    handleMouseDown,
-  ]);
+let amcChart = document.getElementById("amc-chart-button");
+let amc = "AMC"
+amcChart.onclick = () => {
+    selectChart.openStockChart(amc);
+};
 
-  function handleKeyDown(event) {
-    if (event.which === 32) {
-      event.preventDefault();
-      squares.forEach((sq) => sq.reverseAnimation());
-      canvas.setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`);
+let nokChart = document.getElementById("nok-chart-button");
+let nok = "NOK"
+nokChart.onclick = () => {
+    selectChart.openStockChart(nok);
+};
+
+let gmeChart = document.getElementById("gme-chart-button");
+let gme = "GME"
+gmeChart.onclick = () => {
+    selectChart.openStockChart(gme);
+};
+
+let bbbyChart = document.getElementById("bbby-chart-button");
+let bbby = "BBBY"
+bbbyChart.onclick = () => {
+    selectChart.openStockChart(bbby);
+};
+
+window.onload = function () {
+    var reloading = sessionStorage.getItem("reloading");
+    if (reloading) {
+        sessionStorage.removeItem("reloading");
+        aboutFile.closeModal();
     }
-  }
-
-  function handleMouseDown(event) {
-    event.preventDefault();
-    squares.push(
-      new Square(
-        canvas.ctx,
-        canvas.coords.map((co) => co + 25),
-        canvas.fillColor
-      )
-    );
-    // animating = !animating;
-  }
 }
 
-function unregisterEventListeners() {
-  while (currentStateObj.currentEventListeners.length) {
-    let [
-      selector,
-      event,
-      handler,
-    ] = currentStateObj.currentEventListeners.pop();
-    if (selector === "window") {
-      window.removeEventListener(event, handler);
-      console.log(handler);
-    } else {
-      document.querySelector(selector).removeEventListener(event, handler);
-    }
-  }
-}
-
-function clearDemo() {
-  if (currentStateObj.currentExample === "CANVASDEMO")
-    document.body.removeChild(document.querySelector("canvas"));
-  if (currentStateObj.currentExample === "DOMDEMO") {
-    [...document.querySelectorAll(".card")].forEach((elem) =>
-      document.body.removeChild(elem)
-    );
-  }
-}
+document.querySelector(".navbar-logo").addEventListener("click", () => { 
+    hideChart(); 
+    sessionStorage.setItem("reloading", "true");
+    window.location.reload();
+});

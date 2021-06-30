@@ -4,14 +4,110 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <script src="./dist/main.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="./dist/main.css" />
-    <title>JS Project Skeleton</title>
+    <link rel="stylesheet" href="./dist/reset.css" />
+    <title>MemeTrak</title>
   </head>
 
   <body>
-    <button id="canvas-demo">Canvas Demo</button>
-    <button id="DOM-demo">DOM Demo</button>
-    <img class="js-stitch-yoda-src" width="20%" style="margin:2rem auto;display:none;"  src="dist/images/yoda-stitch.jpg">
-    <script src="./dist/main.js"></script>
+    <!-- <script src="./dist/main.js"></script> -->
+    <!-- <div class="body-container"> -->
+
+    </div>
+      <div class="nav-bar-container">
+        <div class="left-navbar">
+          <h1 class="navbar-logo">MemeTrak</h1>
+        </div>
+        <div class="center-navbar">
+          <div class='team-search-input'>
+            <input type='text' name='searchBar' id="search-bar" placeholder="Search for a Stock" value="" />
+              <div class='search-bar-results'></div>
+          </div>
+        </div>
+            <div class="right-navbar">
+                <h3 class="about">About</h3>
+            </div>
+      </div>
+
+      <div class="main-content-container">
+        <div class="landing-page">
+          <div class="landing-buttons">
+            <!-- <h1 id="bb-chart" class="blackberrybutton">Blackberry</h1> -->
+            <!-- <h1 id="amc-chart" class="amcbutton">AMC</h1> -->
+            <!-- <h1 id="nok-chart" class="nokbutton">NOK</h1> -->
+            <div id="max-chart-button" class="maxchartbutton">
+              <h1 class="maxchart-text">MEME POOL</h1>
+            </div>
+            <div id="bb-chart-button" class="blackberrybutton">
+              <img id="bb-logo" class="bb-logo" src="public/images/blackberry.png">
+            </div>
+            <div id="amc-chart-button" class="amcbutton">
+              <img class="amc-logo" src="public/images/amc.png">
+            </div>
+            <div id="nok-chart-button" class="nokbutton" >
+              <img class="nok-logo" src="public/images/nokia.png">
+            </div>
+            <div id="gme-chart-button" class="gmebutton">
+              <img class="gme-logo" src="public/images/gamestop.png">
+            </div>
+            <div id="bbby-chart-button" class="bbbybutton">
+              <img class="bbby-logo" src="public/images/bbby.png">
+            </div>
+          </div>
+        </div>
+        <div class=chart-container>
+          <div id="tab-button-container">
+            <button id="tab-btn-5">MAX</button>
+            <button id="tab-btn-1">1 Day</button>
+            <button id="tab-btn-2">1 Week</button>
+            <button id="tab-btn-3">1 Month</button>
+            <button id="tab-btn-4">1 Year</button>
+          </div>
+          <canvas
+          id="maxChart"
+          class="max-chart full-chart"
+          style="width: 100%; height: 100%"
+          ></canvas>
+          <canvas 
+          id="stockChart" 
+          class="stock-chart full-chart" 
+          style="width: 100%; height: 100%">
+        </canvas>
+        </div>
+      </div>
+
+
+      <div class='modal'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <span class='close-btn'>&timesb;</span>
+            <h2>Welcome!</h2>
+          </div>
+
+          <div class='modal-body'>
+            <p> Hello and welcome to MemeTrak, your one-stop-shop to track the world's hottest meme stocks.</p></br>
+          
+            <p>As meme stocks and the power of retail investing have taken Wall Street by storm, MemeTrak has selected 5 of the most popular meme stocks for you to track.</p></br>
+          
+            <div id="modal-track-container">
+              <p id="modal-tracked"> Currently being tracked  <p id="modal-ticker">:   BB, AMC, GME, NOK, BBBY</p></p> 
+              <!-- <p id="modal-ticker">BB, AMC, GME, NOK, BBBY</p> -->
+            </div></br>
+
+            <p id="modal-how"> How does MemeTrak Work?</p>
+            <p> Once you close out of this page, you can select one of the five meme stocks to see their performance. You can also select "meme pool" to see all 5 stocks on the same chart.</p></br>
+
+              <p> Once on your favorite meme stock's chart, feel free to select the tab with your desired length of data output.</p></br>
+            
+            <p> ENJOY!</p>
+            
+          
+      
+        </div>
+    <!-- <script src="./src/scripts/about.js"></script> -->
+      <!-- </div> -->
   </body>
+  <script src="./dist/main.js"></script>
 </html>
