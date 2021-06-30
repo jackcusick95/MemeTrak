@@ -1,0 +1,57 @@
+body {
+  background-color: #4dff4d;
+  color: green;
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  height: 50vh;
+  width: 50vw;
+  border-radius: 15px;
+  margin-top: 15px;
+  box-shadow: 3px 3px 5px 5px #001a00, 1px 0px 1px #001a00;
+}
+
+.rando {
+  display: flex;
+  flex-direction: column;
+}
+.rando btn {
+  height: 2em;
+  background: magenta;
+  color: white;
+  width: 10vmax;
+  text-align: center;
+  padding-top: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 20px;
+  line-height: 1.5;
+}
+.rando btn:hover {
+  cursor: pointer;
+}
+.rando p {
+  font-family: Arial, Helvetica, sans-serif;
+  color: blueviolet;
+  font-weight: 500;
+  font-size: 5vmin;
+}
+
+.image-card {
+  background-image: url(images/yoda-stitch.jpg);
+  background-position: center;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9qc19wcm9qZWN0X3NrZWxldG9uLy4vc3JjL3N0eWxlcy9pbmRleC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVlBO0VBQ0UseUJBTGlCO0VBTWpCLFlBUlc7RUFTWDtFQUNBO0FBWEY7O0FBY0E7RUFDRTtFQUNBO0VBQ0E7QUFYRjs7QUFlQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUE1QkE7QUFpQkY7O0FBZUE7RUFDRTtFQUNBO0FBWkY7QUFjRTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtBQVpKO0FBYUk7RUFDRTtBQVhOO0FBZUU7RUFDRTtFQUNBO0VBQ0E7RUFDQTtBQWJKOztBQWlCQTtFQUNFO0VBQ0E7QUFkRjs7QUFrQkE7RUFDRTtBQWZGLEMiLCJmaWxlIjoibWFpbi5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBNSVhJTlMgJiYgVkFSSUFCTEVTXG5cbkBtaXhpbiBiYXNpYy1ib3gtc2hhZG93KCRjb2xvcikge1xuICBib3gtc2hhZG93OiAzcHggM3B4IDVweCA1cHggJGNvbG9yLCAxcHggMHB4IDFweCAkY29sb3I7XG59XG5cbiRtYWluLWNvbG9yOiBncmVlbjtcbiRhY2NlbnQtY29sb3I6IGRhcmtlbigkbWFpbi1jb2xvciwgMjAlKTtcbiRiYWNrZ3JvdW5kLWNvbG9yOiBsaWdodGVuKCRtYWluLWNvbG9yLCA0MCUpO1xuXG4vLyBMQVlPVVRcblxuYm9keSB7XG4gIGJhY2tncm91bmQtY29sb3I6ICRiYWNrZ3JvdW5kLWNvbG9yO1xuICBjb2xvcjogJG1haW4tY29sb3I7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG59XG5cbi5jZW50ZXIge1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxuLy8gQ09NUE9ORU5UU1xuLmNhcmQge1xuICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgaGVpZ2h0OiA1MHZoO1xuICB3aWR0aDogNTB2dztcbiAgYm9yZGVyLXJhZGl1czogMTVweDtcbiAgbWFyZ2luLXRvcDogMTVweDtcbiAgQGluY2x1ZGUgYmFzaWMtYm94LXNoYWRvdygkYWNjZW50LWNvbG9yKTtcbn1cblxuLnJhbmRvIHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcblxuICBidG4ge1xuICAgIGhlaWdodDogMmVtO1xuICAgIGJhY2tncm91bmQ6IG1hZ2VudGE7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIHdpZHRoOiAxMHZtYXg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIHBhZGRpbmctdG9wOiA1cHg7XG4gICAgZm9udC1mYW1pbHk6IEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7XG4gICAgYm9yZGVyLXJhZGl1czogMjBweDtcbiAgICBsaW5lLWhlaWdodDogMS41O1xuICAgICY6aG92ZXIge1xuICAgICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIH1cbiAgfVxuXG4gIHAge1xuICAgIGZvbnQtZmFtaWx5OiBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmO1xuICAgIGNvbG9yOiBibHVldmlvbGV0O1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgZm9udC1zaXplOiA1dm1pbjtcbiAgfVxufVxuXG4uaW1hZ2UtY2FyZCB7XG4gIGJhY2tncm91bmQtaW1hZ2U6IHVybChcIi4uL2ltYWdlcy95b2RhLXN0aXRjaC5qcGdcIik7XG4gIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcbn1cblxuLy8gVFlQT0dSQVBIWVxuaDIge1xuICBmb250LXNpemU6IDNyZW07XG59XG4iXSwic291cmNlUm9vdCI6IiJ9*/
