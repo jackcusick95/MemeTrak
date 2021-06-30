@@ -115,7 +115,8 @@ html, body {
     margin-bottom: 0px;
   height: 100%;
   width: 100%;
-background-color: #e3eefa;
+  background-image: url("/Users/jackcusick/Desktop/3PArbitrage/public/images/background.png");
+  background-repeat: no-repeat;
 }
 
 .landing-page {
@@ -148,8 +149,8 @@ display: block;
 
 .maxchartbutton:hover {
     cursor: pointer;
-    border: 5px solid green; 
-    background-color: lightgreen;
+    border: 5px solid #052e78; 
+    background-color: #e3eefa;
 }
 
 .maxchart-text {
@@ -174,8 +175,8 @@ display: block;
 
 .blackberrybutton:hover {
     cursor: pointer;
-    border: 5px solid green; 
-    background-color: lightgreen;
+    border: 5px solid #052e78; 
+    background-color: #e3eefa;
 }
 
 .bb-logo {
@@ -199,8 +200,8 @@ display: block;
 
 .amcbutton:hover {
     cursor: pointer;
-    border: 5px solid green; 
-    background-color: lightgreen;
+    border: 5px solid #052e78; 
+    background-color: #e3eefa;
 }
 
 .amc-logo {
@@ -224,8 +225,8 @@ display: block;
 
 .nokbutton:hover {
     cursor: pointer;
-    border: 5px solid green; 
-    background-color: lightgreen;  
+    border: 5px solid #052e78; 
+    background-color: #e3eefa;  
 }
 
 .nok-logo {
@@ -250,8 +251,8 @@ display: block;
 
 .gmebutton:hover {
     cursor: pointer;
-    border: 5px solid green; 
-    background-color: lightgreen;  
+    border: 5px solid #052e78; 
+    background-color: #e3eefa;  
 }
 
 .gme-logo {
@@ -277,8 +278,8 @@ display: block;
 
 .bbbybutton:hover {
     cursor: pointer;
-    border: 5px solid green; 
-    background-color: lightgreen;  
+    border: 5px solid #052e78; 
+    background-color: #e3eefa;  
 }
 
 .bbby-logo {
@@ -296,6 +297,6 @@ display: block;
 
 .full-chart {
     background-color: white;
-    border: 3px solid black;
+    border: 3px solid #e3eefa;
     border-radius: 3%;
 }
