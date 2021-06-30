@@ -5,11 +5,11 @@ import "regenerator-runtime";
 import "../styles/about.scss";
 
 
-export const selectBBChart = async () => {
-
+export const loadStockChart = async (arg) => {
+    let memeTicker = arg;
     const response = await axios.get("https://api.twelvedata.com/time_series", {
         params: {
-            symbol: "BB",
+            symbol: memeTicker,
             interval: "1month",
             outputsize: "130",
             apikey: myAPIKey,
@@ -21,26 +21,26 @@ export const selectBBChart = async () => {
         console.log("Check console to see API call error.")
         return [];
     }
-    // if (window.bbChart.id !== "bbChart") bbChart.destroy();
+    if (window.stockChart.id !== "stockChart") stockChart.destroy();
 
-    document.querySelector(".bb-chart").innerHTML = chartTemplate(response.data);
-    const bbchart = document.querySelector(".bb-chart")
+    document.querySelector(".stock-chart").innerHTML = chartTemplate(response.data);
+    const stockchart = document.querySelector(".stock-chart")
     const chartcontainer = document.querySelector(".chart-container")
     chartcontainer.style.display = 'none';
-    bbchart.style.display = 'none';
+    stockchart.style.display = 'none';
 }
 
-export function openBBChart() {
-    const bbchart = document.querySelector(".bb-chart")
-    const bbchartbutton = document.querySelector(".blackberrybutton")
+export function openStockChart(button) {
+    const stockchart = document.querySelector(".stock-chart")
+    const stockbutton = document.querySelector(button)
     const mainContentContainer = document.querySelector('.main-content-container')
     const chartcontainer = document.querySelector(".chart-container")
     const landingpage = document.querySelector(".landing-page")
 
     mainContentContainer.onclick = (e) => {
-        if (e.target === bbchartbutton) {
+        if (e.target === stockbutton) {
             chartcontainer.style.display = 'block';
-            bbchart.style.display = 'block';
+            stockchart.style.display = 'block';
             landingpage.style.display = "none";
         }
     }
@@ -48,29 +48,29 @@ export function openBBChart() {
 
 const chartTemplate = (chartInfo) => {
     let intervalWeekly = [];
-    let bbopen = [];
+    let stockopen = [];
 
     Object.values(chartInfo.values).map((datapoint) => {
-        bbopen.unshift(datapoint.open);
+        stockopen.unshift(datapoint.open);
         intervalWeekly.unshift(datapoint.datetime);
     });
 
 
-    let bbpercentChange = (
-        ((bbopen[bbopen.length - 1] - bbopen[0]) / bbopen[0]) *
+    let stockpercentchange = (
+        ((stockopen[stockopen.length - 1] - stockopen[0]) / stockopen[0]) *
         100
     ).toFixed(2);
-    bbpercentChange = bbpercentChange > 0 ? "+" + bbpercentChange : bbpercentChange;
+    stockpercentchange = stockpercentchange > 0 ? "+" + stockpercentchange : stockpercentchange;
 
 
     let color =
-        bbopen[bbopen.length - 1] - bbopen[0] > 0
+        stockopen[stockopen.length - 1] - stockopen[0] > 0
             ? "rgba(0,0,0)"
             : "rgba(0,0,0)";
 
-    let ctx = document.getElementById("bbChart").getContext("2d");
+    let ctx = document.getElementById("stockChart").getContext("2d");
 
-    window.bbChart = new Chart(ctx, {
+    window.stockChart = new Chart(ctx, {
         responsive: true,
         maintainAspectRatio: false,
         type: "line",
@@ -79,7 +79,7 @@ const chartTemplate = (chartInfo) => {
             datasets: [
                 {
                     label: "",
-                    data: bbopen,
+                    data: stockopen,
                     borderColor: "rgb(255, 0, 0)",
                     borderWidth: 2,
                     pointHitRadius: 100,
@@ -122,7 +122,7 @@ const chartTemplate = (chartInfo) => {
             plugins: {
                 title: {
                     display: true,
-                    text: [`Max: "BB" (${bbpercentChange}%)`],
+                    text: [`Max: "BB" (${stockpercentchange}%)`],
                     color: color,
                     font: {
                         family:

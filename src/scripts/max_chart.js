@@ -21,7 +21,7 @@ export const selectMaxChart = async () => {
         console.log("Check console to see API call error.")
         return [];
     }
-    // if (window.maxChart.id !== "maxChart") maxChart.destroy();
+    if (window.maxChart.id !== "maxChart") maxChart.destroy();
 
     document.querySelector(".max-chart").innerHTML = chartTemplate(response.data);
     const maxchart = document.querySelector(".max-chart")
