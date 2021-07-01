@@ -5,15 +5,15 @@ import "regenerator-runtime";
 import "../styles/about.scss";
 
 
-export const openStockChart = async (ticker) => {
-    let memeTicker = ticker;
+export const openStockChart = async (ticker, interval, output) => {
+
+
     const response = await axios.get("https://api.twelvedata.com/time_series", {
         params: {
-            symbol: memeTicker,
-            interval: "1month",
-            outputsize: "130",
+            symbol: ticker,
+            interval: interval,
+            outputsize: output,
             apikey: myAPIKey,
-            source: "docs",
         },
     });
 
@@ -39,26 +39,13 @@ export const openStockChart = async (ticker) => {
 }
 
 const chartTemplate = (chartInfo, ticker) => {
-    let intervalWeekly = [];
+    let intervalmax = [];
     let stockopen = [];
 
     Object.values(chartInfo.values).map((datapoint) => {
         stockopen.unshift(datapoint.open);
-        intervalWeekly.unshift(datapoint.datetime);
+        intervalmax.unshift(datapoint.datetime);
     });
-
-
-    let stockpercentchange = (
-        ((stockopen[stockopen.length - 1] - stockopen[0]) / stockopen[0]) *
-        100
-    ).toFixed(2);
-    stockpercentchange = stockpercentchange > 0 ? "+" + stockpercentchange : stockpercentchange;
-
-
-    let color =
-        stockopen[stockopen.length - 1] - stockopen[0] > 0
-            ? "rgba(0,0,0)"
-            : "rgba(0,0,0)";
 
     let ctx = document.getElementById("stockChart").getContext("2d");
 
@@ -67,7 +54,7 @@ const chartTemplate = (chartInfo, ticker) => {
         maintainAspectRatio: false,
         type: "line",
         data: {
-            labels: intervalWeekly,
+            labels: intervalmax,
             datasets: [
                 {
                     label: "",
@@ -96,7 +83,7 @@ const chartTemplate = (chartInfo, ticker) => {
                     display: false,
                 },
                 y: {
-                    beginAtZero: true,
+                    beginAtZero: false,
                 },
 
                 x: {
@@ -114,8 +101,8 @@ const chartTemplate = (chartInfo, ticker) => {
             plugins: {
                 title: {
                     display: true,
-                    text: [`Max: ${ticker} (${stockpercentchange}%)`],
-                    color: color,
+                    text: [`${ticker}`],
+                    color: "rgba(0,0,0)",
                     font: {
                         family:
                             "Cambria, 'Cochin', 'Georgia', 'Times', 'Times New Roman', serif",
