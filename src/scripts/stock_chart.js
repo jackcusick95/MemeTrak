@@ -5,7 +5,7 @@ import "regenerator-runtime";
 import "../styles/about.scss";
 
 
-export const openStockChart = async (ticker, interval, output) => {
+export const openStockChart = async (ticker, interval, output, time) => {
 
 
     const response = await axios.get("https://api.twelvedata.com/time_series", {
@@ -22,7 +22,16 @@ export const openStockChart = async (ticker, interval, output) => {
     const nokbuttons = document.querySelector(".nok-button-container")
     const gmebuttons = document.querySelector(".gme-button-container")
     const bbbybuttons = document.querySelector(".bbby-button-container")
-
+    
+    if (time == "day" || "month" || "week") {
+        bbbuttons.style.marginLeft = "85px";
+        amcbuttons.style.marginLeft = "85px";
+        nokbuttons.style.marginLeft = "85px";
+        gmebuttons.style.marginLeft = "85px";
+        bbbybuttons.style.marginLeft = "85px";
+    } 
+    
+    
     if (ticker == "BB") {
         bbbuttons.style.display = "block";
     } else if ( ticker == "NOK") {
@@ -34,14 +43,14 @@ export const openStockChart = async (ticker, interval, output) => {
     } else if (ticker == "BBBY") {
         bbbybuttons.style.display = "block";
     }
-
-    // implement this when unsubscribing to api plan
+    
+    // implement this when unsubscribing to api plan. will error if there are more than 8 api calls/ min
     if (response.data.status === "error") {
         console.log("Check console to see API call error.")
         return [];
     }
 
-    document.querySelector(".stock-chart").innerHTML = chartTemplate(response.data, ticker);
+    document.querySelector(".stock-chart").innerHTML = buildChart(response.data, ticker);
 
     const landingpage = document.querySelector(".landing-page")
     const landingbuttons = document.querySelector(".landing-buttons")
@@ -56,75 +65,57 @@ export const openStockChart = async (ticker, interval, output) => {
 
 }
 
-const chartTemplate = (chartInfo, ticker) => {
+const buildChart = (chartInfo, ticker) => {
     let intervalmax = [];
-    let stockopen = [];
+    let stockPriceDisplay = [];
 
     Object.values(chartInfo.values).map((datapoint) => {
-        stockopen.unshift(datapoint.open);
+        stockPriceDisplay.unshift(datapoint.close);
         intervalmax.unshift(datapoint.datetime);
     });
 
     let ctx = document.getElementById("stockChart").getContext("2d");
 
     window.stockChart = new Chart(ctx, {
-        responsive: true,
-        maintainAspectRatio: false,
         type: "line",
         data: {
             labels: intervalmax,
             datasets: [
                 {
-                    label: "",
-                    data: stockopen,
+                    label: "Please wait 1 minute if chart does not load (api request/ min exceeded)",
+                    data: stockPriceDisplay,
                     borderColor: "rgb(255, 0, 0)",
-                    borderWidth: 2,
-                    pointHitRadius: 100,
                 },
             ],
         },
         options: {
             elements: {
-                line: {
-                    borderCapStyle: "round",
-                    tension: 0.2,
-                },
                 point: {
                     radius: 0,
                 },
             },
-            maintainAspectRatio: false,
             scales: {
                 grid: {
                     color: "rgba(0,0,0,0)",
                     borderColor: "rgba(0,0,0,0)",
                     display: false,
                 },
-                y: {
-                    beginAtZero: false,
-                },
-
                 x: {
                     grid: {
                         color: "rgba(0,0,0,0)",
-                        borderColor: "rgba(0,0,0,0)",
-                        tickColor: "rgba(0,0,0,0)",
-                    },
-                    display: true,
-                    ticks: {
-                        display: true,
                     },
                 },
             },
             plugins: {
                 title: {
                     display: true,
+                    position: 'top', 
                     text: [`${ticker}`],
                     color: "rgba(0,0,0)",
                     font: {
                         family:
-                            "Cambria, 'Cochin', 'Georgia', 'Times', 'Times New Roman', serif",
-                        size: 18,
+                            "Sans Serif",
+                        size: 25,
                     },
                 },
                 legend: {
