@@ -17,11 +17,29 @@ export const openStockChart = async (ticker, interval, output) => {
         },
     });
 
+    const bbbuttons = document.querySelector(".bb-button-container")
+    const amcbuttons = document.querySelector(".amc-button-container")
+    const nokbuttons = document.querySelector(".nok-button-container")
+    const gmebuttons = document.querySelector(".gme-button-container")
+    const bbbybuttons = document.querySelector(".bbby-button-container")
+
+    if (ticker == "BB") {
+        bbbuttons.style.display = "block";
+    } else if ( ticker == "NOK") {
+        nokbuttons.style.display = "block";
+    } else if (ticker == "AMC") {
+        amcbuttons.style.display = "block";
+    } else if (ticker == "GME") {
+        gmebuttons.style.display = "block";
+    } else if (ticker == "BBBY") {
+        bbbybuttons.style.display = "block";
+    }
+
+    // implement this when unsubscribing to api plan
     if (response.data.status === "error") {
         console.log("Check console to see API call error.")
         return [];
     }
-    if (window.stockChart.id !== "stockChart") stockChart.destroy();
 
     document.querySelector(".stock-chart").innerHTML = chartTemplate(response.data, ticker);
 
