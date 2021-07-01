@@ -26,7 +26,6 @@ export function addEventListeners() {
      const about = document.querySelector(".about")
      const modal = document.querySelector(".modal")
      const closeModalBtn = document.querySelector('.close-btn')
-    //  const mainContentContainer = document.querySelector('.main-content-container')
 
     navBar.onclick = (e) => {
 
