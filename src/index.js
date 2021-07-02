@@ -16,6 +16,7 @@ const amcbuttons = document.querySelector(".amc-button-container")
 const nokbuttons = document.querySelector(".nok-button-container")
 const gmebuttons = document.querySelector(".gme-button-container")
 const bbbybuttons = document.querySelector(".bbby-button-container")
+const allstocksbuttons = document.querySelector(".allstocks-button-container")
 bbbuttons.style.display = "none";
 nokbuttons.style.display = "none";
 amcbuttons.style.display = "none";
@@ -23,6 +24,7 @@ gmebuttons.style.display = "none";
 bbbybuttons.style.display = "none";
 chartcontainer.style.display = "none";
 stockcontainer.style.display = "none";
+allstocksbuttons.style.display = "none";
 
 
 let bbChart = document.getElementById("bb-chart-button");
@@ -34,9 +36,9 @@ let bbMaxChart = document.getElementById("bb-max-button");
 let bb = "BB"
 let bbinterval = "1month"
 let bboutput = "170"
-let time = "max"
+let opentime = "max"
 bbChart.onclick = () => {
-    selectChart.openStockChart(bb, bbinterval, bboutput, time);
+    selectChart.openStockChart(bb, bbinterval, bboutput, opentime);
     bbDayChart.addEventListener("click", () => {
         let bb = "BB"
         let bbinterval = "5min"
@@ -272,6 +274,61 @@ bbbyChart.onclick = () => {
         window.stockChart.destroy();
         selectChart.openStockChart(bbby, bbbyinterval, bbbyoutput);
     });
+
+};
+
+let allstocksChart = document.getElementById("max-chart-button");
+let allstocksDayChart = document.getElementById("allstocks-day-button");
+let allstocksWeekChart = document.getElementById("allstocks-week-button");
+let allstocksMonthChart = document.getElementById("allstocks-month-button");
+let allstocksYearChart = document.getElementById("allstocks-year-button");
+let allstocksMaxChart = document.getElementById("allstocks-max-button");
+let allstocks = "BB, NOK, AMC, GME, BBBY"
+let allstocksinterval = "1month"
+let allstocksoutput = "170"
+let allopentime = "max"
+allstocksChart.onclick = () => {
+    selectChart.openStockChart(allstocks, allstocksinterval, allstocksoutput, allopentime);
+    allstocksDayChart.addEventListener("click", () => {
+        let allstocks = "BB, NOK, AMC, GME, BBBY"
+        let allstocksinterval = "5min"
+        let allstocksoutput = "78"
+        let time = "day"
+        window.stockChart.destroy();
+        selectChart.openStockChart(allstocks, allstocksinterval, allstocksoutput, time);
+    });
+    allstocksWeekChart.addEventListener("click", () => {
+        let allstocks = "BB, NOK, AMC, GME, BBBY"
+        let allstocksinterval = "1h"
+        let allstocksoutput = "35"
+        let time = "week"
+        window.stockChart.destroy();
+        selectChart.openStockChart(allstocks, allstocksinterval, allstocksoutput, time);
+    });
+    allstocksMonthChart.addEventListener("click", () => {
+        let allstocks = "BB, NOK, AMC, GME, BBBY"
+        let allstocksinterval = "1h"
+        let allstocksoutput = "155"
+        let time = "month"
+        window.stockChart.destroy();
+        selectChart.openStockChart(allstocks, allstocksinterval, allstocksoutput, time);
+    });
+    allstocksYearChart.addEventListener("click", () => {
+        let allstocks = "BB, NOK, AMC, GME, BBBY"
+        let allstocksinterval = "1day"
+        let allstocksoutput = "254"
+        let time = "year"
+        window.stockChart.destroy();
+        selectChart.openStockChart(allstocks, allstocksinterval, allstocksoutput, time);
+    });
+    allstocksMaxChart.addEventListener("click", () => {
+        let allstocks = "BB, NOK, AMC, GME, BBBY"
+        let allstocksinterval = "1month"
+        let allstocksoutput = "170"
+        window.stockChart.destroy();
+        selectChart.openStockChart(allstocks, allstocksinterval, allstocksoutput);
+    });
+
 };
 
 window.onload = function () {
